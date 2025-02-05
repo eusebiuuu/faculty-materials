@@ -1,3 +1,5 @@
+import Data.Maybe
+
 data Expr = Const Int -- integer constant
           | Expr :+: Expr -- addition
           | Expr :*: Expr -- multiplication
@@ -15,9 +17,9 @@ instance Show Expr where
   show (e1 :*: e2) = "(" ++ show e1 ++ " * "++ show e2 ++ ")"           
 
 evalExp :: Expr -> Int
-evalExp (Const x) = x;
-evalExp (e1 :+: e2) = evalExp(e1) + evalExp(e2);
-evalExp (e1 :*: e2) = evalExp(e1) * evalExp(e2);
+evalExp (Const x) = x
+evalExp (e1 :+: e2) = evalExp(e1) + evalExp(e2)
+evalExp (e1 :*: e2) = evalExp(e1) * evalExp(e2)
 
 
 
@@ -71,13 +73,16 @@ keys Empty = []
 keys (BNode smaller curr_key treeValue bigger) = keys smaller ++ [curr_key] ++ keys bigger
 
 values :: IntSearchTree value -> [value]
-values = undefined
+values Empty = []
+values (BNode smaller curr_key treeValue bigger)
+  | isNothing treeValue = values smaller ++ values bigger
+  | otherwise = values smaller ++ [fromJust treeValue] ++ values bigger
 
 insert :: Int -> value -> IntSearchTree value -> IntSearchTree value
 insert = undefined
 
-delete :: Int -> IntSearchTree value -> IntSearchTree value
-delete key Empty = Empty
+-- delete :: Int -> IntSearchTree value -> IntSearchTree value
+-- delete key Empty = Empty
 -- delete key (BNode smaller curr_key treeValue bigger)
 --     | key == curr_key = (BNode )
 

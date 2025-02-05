@@ -7,8 +7,7 @@ extree :: Tree
 extree = Node 4 (Node 5 Empty Empty Empty) (Node 3 Empty Empty (Node 1 Empty Empty Empty)) Empty
 
 class ArbInfo t where
-  level :: t -> Int -- intoarce inaltimea arborelui; pt un arbore vid
-                      -- se considera ca are inaltimea 0
+  level :: t -> Int -- intoarce inaltimea arborelui; pt un arbore vid; se considera ca are inaltimea 0
   sumval :: t -> Int -- intoarce suma valorilor din arbore
   nrFrunze :: t -> Int -- intoarce nr de frunze al arborelui
 -- level extree
@@ -37,12 +36,19 @@ class Scalar a where
   negates :: a -> a
   recips :: a -> a
 
+instance Scalar Float where
+  zero = 0
+  one = 1
+  adds x y = x + y
+  mult x y = x * y
+  negates x = negate x
+  recips x = 1 / x
 
 class (Scalar a) => Vector v a where
     zerov :: v a
     onev :: v a
     addv :: v a -> v a -> v a -- adunare vector
-    smult :: a -> v a -> v a  -- inmultire cu scalare
+    smult :: a -> v a -> v a  -- inmultire cu scalari
     negatev :: v a -> v a -- negare vector
 
 

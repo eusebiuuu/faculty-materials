@@ -11,7 +11,18 @@ class Collection c where
 
 newtype PairList k v = PairList { getPairList :: [(k, v)] }
 
-
+instance Collection PairList where
+    empty = PairList []
+    singleton key val = PairList [(key, val)]
+    insert key val coll_pair = PairList ((key, val) : (getPairList coll_pair))
+    toList coll = getPairList coll
+    keys coll = [curr_key | (curr_key, curr_val) <- (toList coll)]
+    values coll = [curr_val | (curr_key, curr_val) <- (toList coll)]
+    lookup k coll = getElem k (getPairList coll) where
+        getElem _ [] = Nothing
+        getElem k ((x, y) : rest)
+            | x == k = Just y
+            | otherwise = getElem k rest
 
 
 -----------------------
