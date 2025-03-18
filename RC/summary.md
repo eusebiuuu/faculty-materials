@@ -1,0 +1,40 @@
+## Introducere
+- Infrastructura unei retele este formata din 3 categorii de componente:
+  - **Dispozitive / echipamente**
+  - **Medii de comunicatie / network technologies**
+  - **Servicii si procese**
+- Componentele hardware din retea (dispozitivele si mediile de comunicatie) sunt utilizate pentru a furniza servicii si procese
+- **Dispozitivele**
+  - **Dispozitivele finale**, cu care oamenii opereaza, se numesc host-uri, fiecare detinand o adresa unica in retea
+  - **Dispozitivele intermediare** (**networking hardware**) sunt cele care realizeaza conexiunea si corectitudinea transferului de date dintre terminale, ruland in background; eg.: switches, routers, firewalls
+  - Fiecare dispozitiv este conectat la internet prin intermediul unei componente hardware locale numite **Network Interface Controller (NIC)** cunoscuta, de asemenea, si sub numele de **network adapter**
+  - Fiecare dispozitiv are o adresa fizica, permanenta, furnizata de producator (care are obligatia sa se asigure ca este unica) numita adresa **Media Access Control (MAC)** ce se afla in NIC; ea este folosita pentru detectarea device-urilor la **data link layer** (device to device communication)
+  - Pentru ca un dispozitiv sa se poata identifica intr-o retea (la **network layer**), este necesara o alta adresa, una logica, numita adresa **Internet Protocol (IP)**; ea este atribuita dispozitivelor de catre **router** (prin DHCP) pentru **LAN / Wi-Fi** (adresa IP privata) sau de catre **Internet Service Provider (ISP)** in cazul retelelor mai mari (adresa IP publica, care poate fi dinamica sau statica)
+- **Mediile de comunicatie / Networking technologies**
+  - **Wired networking technologies**
+    - **Ethernet** (cea mai comuna; basically, internetul prin fir)
+    - **Fiber optic network**
+    - **DSL**
+    - **Coaxial cable**
+  - **Wireless networking technologies**
+    - **Wi-Fi (Wireless Fidelity)**: the most common wireless LAN technologies
+    - **Cellular Networks (3G, 4G, 5G)**: mobile internet access
+    - **Bluetooth**: Short-range wireless communication for devices like headphones and smart home devices
+    - Etc.
+  - **Specialized networking technologies**
+    - **Satellite Internet**: Used in remote areas where traditional networks aren’t available (e.g., Starlink)
+    - **Powerline Communication (PLC)** – Uses electrical wiring to transmit data (e.g., HomePlug adapters).
+- **Serviciile si procesele**
+  - **Serviciile** reprezinta software-uri care raspund la request-uri prin trimiterea de informatii; eg.: serviciul web, serviciul e-mail
+  - **Procesele** furnizeaza functionalitatea de a (re)directiona mesajele prin retea
+- Infrastructurile de retelele sunt de mai multe tipuri, insa cele mai comune sunt:
+  - **Local area network (LAN)**
+  - **Wide area network (WAN)**
+- Altele includ:
+  - **Metropolitan Area Network (MAN)**: reteaua universitatii
+  - **Wireless LAN (WLAN)**
+- **Internet-ul** reprezinta reteaua globala de WAN-urilor si LAN-urilor interconectate ce consta din hardware infrastructure si communication protocols
+- **Internet-ul** consta in diverse servicii, cum ar fi **World Wide Web**, **Email**, **File Transfer**
+- **Intraneturile** sunt în esență un internet care este, în mod obișnuit, accesibil numai din interiorul unei organizații printr-o conexiune privata de LAN-uri si WAN-uri.
+- O organizație ar putea utiliza un **extranet** pentru a oferi acces securizat și sigur indivizilor care lucrează pentru diferite organizații, dar necesită datele companiei.
+- 
