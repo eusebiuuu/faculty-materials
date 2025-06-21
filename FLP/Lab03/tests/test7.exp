@@ -1,5 +1,0 @@
-{true}
-  while true do
-    skip
-  invariant true
-{ultimateQuestionOfLife == 42}

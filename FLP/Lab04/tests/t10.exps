@@ -1,1 +1,0 @@
-p(f(X,a), g(Y), Z), p(f(a,a), Z,U), p(V,U,Z)
