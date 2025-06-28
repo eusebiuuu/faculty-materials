@@ -38,7 +38,7 @@ torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
 
-def load_and_resize_images(folder_path: str, target_size: tuple) -> tuple[np.ndarray, dict]:
+def load_and_resize_images(folder_path: str, target_size: tuple):
     images = []
     image_id_to_idx = {}
     current_idx = 0
@@ -61,7 +61,7 @@ def load_and_resize_images(folder_path: str, target_size: tuple) -> tuple[np.nda
 
     return np.array(images), image_id_to_idx
 
-def load_labels_from_csv(csv_path: str, image_id_to_idx: dict, num_images: int) -> torch.Tensor:
+def load_labels_from_csv(csv_path: str, image_id_to_idx: dict, num_images: int):
 
     labels_df = pd.read_csv(csv_path)
     labels_tensor = torch.zeros(num_images, dtype=torch.long)
@@ -91,7 +91,7 @@ validation_labels = load_labels_from_csv(f'{DATASET_PATH}validation.csv', val_im
 print(f"Loaded {len(train_labels)} training labels and {len(validation_labels)} validation labels.")
 
 
-def torch_channelwise_normalize(train_imgs: np.ndarray, val_imgs: np.ndarray, test_imgs: np.ndarray, eps: float = 1e-7) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+def torch_channelwise_normalize(train_imgs: np.ndarray, val_imgs: np.ndarray, test_imgs: np.ndarray, eps: float = 1e-7):
 
     train_t = torch.tensor(train_imgs, dtype=torch.float32) / 255.0 # Normalize to [0, 1]
     val_t = torch.tensor(val_imgs, dtype=torch.float32) / 255.0     # Normalize to [0, 1]
@@ -147,7 +147,6 @@ augmentation_transform = transforms.Compose([
     transforms.RandomHorizontalFlip(p=0.5),
     transforms.RandomVerticalFlip(p=0.5),
     # If using torchvision models that expect PIL images, you might need:
-    # transforms.ToPILImage(),
     # transforms.RandomRotation(30),
     # transforms.ColorJitter(brightness=0.3, contrast=0.3, saturation=0.3, hue=0.1),
     # transforms.ToTensor(), # Convert back to tensor if ToPILImage was used
@@ -176,7 +175,7 @@ final_test_loader = DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=Fals
 print(f"Train batches: {len(train_loader)}, Validation batches: {len(validation_loader)}, Test batches: {len(final_test_loader)}")
 
 
-# --- CNN Model Definition ---
+# --- CNN Model ---
 
 class ConvNet(nn.Module):
     """
@@ -351,23 +350,20 @@ scheduler_sgd = torch.optim.lr_scheduler.StepLR(
     optimizer_sgd, step_size=10, gamma=0.1
 )
 
-# --- Training Loop ---
 best_val_loss = float('inf')
-patience = 5 # For early stopping, if implemented
+patience = 5
 patience_counter = 0
 
-# Lists to store metrics for plotting
 train_losses = []
 val_losses = []
 train_accuracies = []
 val_accuracies = []
-learning_rates = [] # To track LR changes
+learning_rates = []
 
 print("Starting model training...")
 for epoch in range(1, NUM_EPOCHS + 1):
     print(f"--- Epoch {epoch}/{NUM_EPOCHS} ---")
 
-    # Select optimizer and scheduler based on epoch
     if epoch <= SWITCH_OPTIMIZER_EPOCH:
         current_optimizer = optimizer_adam
         current_scheduler = scheduler_adam

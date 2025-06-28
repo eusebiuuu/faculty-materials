@@ -282,7 +282,7 @@
 
 
 ### **Convolutional neural networks (CNNs)**
-- Retelele convolutionale se bazeaza pe operatia de **convolutie** dintre o submatrice a input-ului (**care va fi mereu o matrice**) si o matrice numita **kernel**, care reprezeinta de fapt inmultirea element cu element a celor 2. Output-ul acestei operatii va fi o matrice de dimensiunea kernel-ului si va reprezenta un **feature map**.
+- Retelele convolutionale se bazeaza pe operatia de **convolutie** dintre o submatrice a input-ului (**care va fi mereu o matrice**) si o matrice numita **kernel**, ce reprezinta de fapt inmultirea element cu element a celor 2. Output-ul acestei operatii va fi o matrice de dimensiunea kernel-ului si va reprezenta un **feature map**.
 - Un input poate fi format din mai multe dimensiuni, adica mai multe astfel de matrici, in care fiecare dimensiune este responsabila cu un tip de feature (de ex. imaginile RGB), caz in care se vor defini mai multe **canale**, unul pentru fiecare matrice, fiecare cu propriul kernel (sau nu), ce la final se vor uni si vor forma **output-ul layer-ului**.
 - Inmultirea din operatia de convolutie se realizeaza prin sliding-ul matricii kernel de-a lungul input-ului. Pasul cu care se realizeaza acest sliding se numeste **stride**.
 - For example, given an input of $n\times n$ size, the new size will be $\frac{n - k + 2 \cdot p}{stride} + 1$
