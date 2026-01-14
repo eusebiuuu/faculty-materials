@@ -39,7 +39,7 @@
     "editor.wrappingIndent": "none",
     "editor.cursorBlinking": "smooth",
     "open-in-browser.default": "Firefox",
-    "workbench.colorTheme": "Default Light Modern",
+    "workbench.colorTheme": "Default Dark Modern",
     "C_Cpp.inactiveRegionOpacity": 0.55,
     "explorer.confirmDragAndDrop": false,
 

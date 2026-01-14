@@ -23,8 +23,16 @@
 - Gradient checking
 - Regularization: weight decay with L2 and small coefficient (1e-4), early stopping, dropout
 - Stabilire learning rate: exponential decay, step decay, 1/t decay
-
-- **Fine tunning**: experiment with different parameters and save metrics for final report & ask for help
+- **Fine tunning**: experiment with different parameters, diagnose the issues and save metrics for final report
+- Reinforcement Learning tips (to be generalised):
+  - Intermediary rewards for agents (more often in Reinforcement Learning training)
+  - https://docs.pytorch.org/rl/stable/index.html
+  - https://stable-baselines3.readthedocs.io/en/master/
+  - https://stable-baselines3.readthedocs.io/en/master/guide/rl_tips.html
+  - https://docs.pytorch.org/tutorials/intermediate/reinforcement_q_learning.html
+  - Frameworks for monitoring and tunning
+  - Analizați instabilități, convergență, overfitting, explorare etc.
+  - grafice (reward, loss, Q-values, stabilitate), tabele comparative, metrici de performanță
 
 - Evaluation Metrics
   - Report confusion matrices for the provided validation set with various models
