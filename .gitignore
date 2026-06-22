@@ -1,6 +1,12 @@
 /*/sandbox.*
 /*/*.in
-/*/*.out
 PAO/labs
 /*/output.*
 /IA/ML/*/data/*
+.env
+*.aux
+*.toc
+*.log
+*.out
+*.synctex.gz
+*.pdf

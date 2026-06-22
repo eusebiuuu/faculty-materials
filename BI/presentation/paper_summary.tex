@@ -1,0 +1,124 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{float}
+\graphicspath{{./images/}}
+\title{AI-driven Platform for Improving Protein Synthesis}
+\author{R\^{i}mboi Eusebiu, Lupu Andrei - grupa 332}
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+	
+	\section{Introduction}
+	
+	As you already know, the proteins are one of the fundamental components of the world around and within us. They are responsible for the complexity biology challenged us with, some of them still being unclear even with all the technology modern society offers, like protein folding, various brain diseases like Alzheimer’s disease, epigenetic and its long-term causes, origins of life (How did early proteins gain specificity and stability? Who came first: protein or RNA?) just to name a few.
+	
+	Structurally, they consist of combinations of 20 amino-acids connected with each other such that they form a chain that is afterwards folded.
+	
+	Given their importance, its crucial for humans to understand how these underlying mechanisms work in order to cure diseases, design better drugs, improve our nutrition, discover more biology processes that reveal more about life and, who knows, maybe discover immortality.
+	
+	There are hundreds of papers that get published every year on the topic of proteins, either from the simple curiosity of the authors, or from the necessity of making certain drugs for people in pain, or from urgent needs like a vaccine.
+	
+	Even with all the technology we possess at this moment and all the knowledge and best practices, a paper can still be cumbersome to write, consisting of time consuming procedures, manual operations, error prone processes all while being affected by replicability issues. Besides this, when it comes to existing automation, it often requires some specialized knowledge (like programming or physics and robotics) to be able to use certain tools properly.
+	
+	\section{The Platform}
+	
+	This paper which we are going to present, intends to offer a generalized platform that makes use of the cross edge technologies we have nowadays (LLMs, machine learning pipelines, computing power etc.) in order to facilitate the process of proteins research. The purpose is to make it more biologist friendly, help it become more affordable in terms of both costs and time, be fully automated, while also being easily configurable or expanded.
+	
+	The main objective of the system is to use the initial set of some identic proteins, mutate them in a single amino-acid, create them (with the mutations in place), test their properties, use the gathered data to train a supervised ML model that will be used by LLM in the next round to suggest mutations. In short, the system represents a bio-foundry platform that respects the DBTL flow: design, build, test and learn. Now let's dive deeper into the system flow.
+	
+	\subsection{Design Phase}
+	
+	The design step involves a protein-LLM called ESM-2, which is actually a transformer model trained on global protein sequences that predicts the likelihood of specific amino acid substitutions at any given position based on a sequence context. To improve the LLM accuracy even further, 3 tools are used, two deterministic for statistical purposes and the other one being an ML model, to give LLM hints of what mutations to apply.
+	
+	The first one is an epistasis model - a tool which is used observe how the combinations of genes affect the final set of characteristics of a specimen, called EVMutation - which in this case focuses on the local homologs of the target proteins. The second one is a supervised low-N regression model which we will learn more about in the Learn Phase. Lastly, there is the EVcouplings, a statistical model for scoring the impact of amino-acids substitutions. As an additional note, they created a user interface, leveraging OpenAI's assistant API with customized functions, to design the initial library using simple language commands, like "help me improve phytase" or "design the initial library for AtHMT", especially for users without required coding skills.
+	
+	\subsection{Build Phase}
+	
+	The building step involves using the bio-foundry tool called iBioFAB (which comes from Illinois Biological Foundry for Advanced Biomanufacturing), that represents a laboratory automation platform that combines various instruments for robust and continuous experimentation, like creating and mutating proteins, among others. In general, a biofoundry platform as this one is responsible for the following operations:
+	
+	\begin{itemize}
+		\item Design new protein sequences (natural or engineered)
+		\item Build the DNA that encodes those proteins
+		\item Express the proteins in cells (like bacteria or yeast)
+		\item Test their structure, function, and performance
+		\item Iteratively improve them using data
+	\end{itemize}
+	
+	In traditional ML-guided protein engineering, site-directed mutagenesis (SDM) is used to construct the variants suggested by the LLM, which must then be sequenced to verify that the mutations were built correctly. When done a large number of times, this operation often delays the process and increases costs. To optimize this, only a small percentage of the set of candidates is sequenced and measured to generate the desired dataset. As an additional note, given its complexity, the system is designed in modules to make troubleshooting easier if errors appear and also to recover easily from failures.
+	
+	After the instructions from ESM-2 reach the biofoundry, a central robotic arm and scheduling software (Thermo Momentum) coordinate the movement of samples between different laboratory instruments. Then, Python scripts automatically generate "worklists" that tell the liquid-handling robots exactly which DNA templates and primary chemicals to mix together.
+	
+	The pipeline automatically performs all the necessary steps to create the new DNA (mutagenesis PCR and assembly) and inserts that DNA into bacteria so it can be grown.
+	
+	To make this step run continuously without human intervention, the researchers optimized a specific high-fidelity DNA assembly method that is so accurate they can skip stopping to manually verify the sequences.
+	
+	However, failures happen often. To keep this massive pipeline from breaking down, the researchers divided its workflow into seven distinct automated modules. This modular design means that if one part of the process fails, the system can be troubleshooted and recovered without having to restart the entire weeks-long experiment from scratch.
+	
+	\subsubsection{Mutagenesis PCR (Polymerase Chain Reaction)}
+	
+	This is the starting point where the LLM's predictions are turned into physical DNA. Since PCR is a method used to copy DNA, in this module robots mix the original enzyme's DNA with specific primary chemical that contain the targeted mutations.
+	
+	\subsubsection{DNA Assembly}
+	
+	Then, having the mutated DNA pieces from the PCR step, they need to be inserted into a "vehicle" (a circular piece of DNA called a plasmid) so that bacteria can read them. The robots use a highly accurate chemical method called "HiFi assembly" to stitch these DNA fragments together.
+	
+	\subsubsection{Coming to Life}
+	
+	You may already know that DNA on its own doesn't do anything since it needs a living host to read it. In this module, the robotic system shocks specialized E-coli bacteria so they absorb the newly assembled mutant DNA. The robots then automatically spread these bacterias onto nutrient plates to let them grow.
+	
+	\subsubsection{Forming Colonies}
+	
+	As the bacteria grow on the microscope plates, they form visible dots called colonies. Each such colony represents a cluster of bacteria holding a specific mutated enzyme. An automated tool (called Pickolo) visually scans the plates, picks up individual colonies, and moves them into deep-well plates filled with nutrients so they can reproduce and obtain a larger samples pool.
+	
+	\subsubsection{Bacteria Purification}
+	
+	Before making the final proteins, the system needs to isolate and clean up the mutated DNA (plasmids) from the bacteria grown in the previous step. Automated liquid handlers break the cells and clean the bacterial debris to leave behind only the pure mutant DNA.
+	
+	\subsubsection{Enzymes Production}
+	The purified plasmids are put into a new batch of bacteria specifically designed to become protein factories. The automated incubators grow these bacteria in large amounts and then add a chemical trigger (IPTG) that forces them to produce the mutated enzymes. Then, the system open the cells to release the newly created enzymes into a "crude lysate" mix.
+	
+	\subsubsection{Get the Results}
+	
+	Finally, the liquid-handling robots take small amounts of the enzyme soup and mix it with specific chemicals that change color or fluoresce based on how well the enzyme performs its specific job. Then, special tools read the plates and measure the enzymes reactions to see how active how each mutant is.
+	
+	\subsection{Test Phase}
+	
+	Next, iBioFAB analyzes the synthesized variants and tests them to gather enough information to define the new data set, which is later used in training the ML model presented below.
+	
+	\subsection{Learn Phase}
+	
+	In this phase, the main actor is the supervised low-N ML model. Given the fact that in the first round there is no much information to process and train on, this model is useful only from the round two forward, the first round only an unsupervised model being used (cold start problem). Moreover, they chose a low-N model since there are some limitations on how much proteins can be synthetized from that biofoundry, as presented above.
+	
+	When it comes to the data labeling, there is no human that does this action - but it's an automate process made by the biofoundry itself (check the EVcouplings model presented above). Once trained, the model predicted variants with only one additional mutation than the previous round for the subsequent screening cycle.
+	
+	\section{Results}
+	To showcase its usability, the paper applied this system to improve the enzymatic properties for 2 proteins: AtHMT protein - ethyltransferase activity, more concretely seeking to improve its preference for ethyl-iodide over methyl-iodide and YmPhytase - broaden the range of pH when it's active. As a side note for phytase, it's important to note that they can hydrolyze phytic acid, the main storage form of phosphate in plant tissues that is indigestible by most animals, and release inorganic phosphate, an important nutrient. So it's actually a very useful application that could benefit a large set of animals, since to function in animal feed, phytase must have high activity at a broad pH range to tolerate the pH variation of the gastrointestinal tract of animals.
+	
+	As results, after 4 rounds, the best identified AtHMT variant showed an ~16-fold improvement in ethyltransferase activity compared to wtHMT. Another AtHMT variant showed an 90-fold increase in preference for ethyl-iodide over methyl-iodide. 
+	For YmPhytase, one variant from the fourth round exhibited a 26.3-fold improvement in specific activity over wtPhy at pH 6.6. Another variant performed remarkably well at both pH 5.6 and 6.6, exhibiting 25.8- and 19.8-fold improvements in specific activity compared to wtPhy, respectively.
+	
+	\section{Limitations}
+	Limitations: ESM-2 may not be suitable for all proteins, the supervised low-N model used for iterative predictions showed relatively weak correlation with experimental results, suggesting the possibility that certain proteins may perform particularly poorly using such a predictive model, recycling of mutagenesis prevents parallelization, high throughput proteins.
+	
+	Another limitation however is in building toxic protein sequences. Since the product can actually kill the host, it is tricky for the algorithm to determine whether the mutation was unsuccessful or whether the product was too potent. This however can be mitigated while using a method called Cell Free Protein Synthesis. 
+	
+	Cell free protein synthesis works by removing the living parts of the cell, such as the membrane and the original DNA and using the plasm that contains the ribosomes and inserting DNA directly into the solution. This way the scientists can expect a certain behavior of the cell even before mutating it. This has 2 main benefits. 
+	
+	Firstly it can actually help by trimming down the original set of data by testing a larger volume of possible DNA structures and getting faster results. This way the first step can be optimized by reading the CFPS results and using them as another learning set for the LLM. The second main benefit is the fact that toxic proteins can be created without the cell, removing a layer of complexity. This however is more of a ductape fix since it doesn't resolve the initial problem with the cell dying, however it can help with understanding the problem better. Once the protein is created scientists can experiment more with it in order to properly figure out if the protein can be created using cells and whether or not the protein needs to be altered to make it less toxic for the host.
+	
+	\section{Conclusions}
+	
+	Personally, I believe this paper can really shape how research labs around the world study, synthetize and test proteins, by providing a multifunctional platform that combines the newest cross edge technologies. This can be also seen from the number of citations it has (>50). However, while this paper is very well done and smart, I still find an issue in it I will describe below.
+	
+	It's about number of run experiments. While I understand that this platform has many dependencies on LLMs, ML models, biofoundry performance and speed, I believe that they should have run more experiments on it, with multiple proteins and document the results, not just two. When I write in the title of the paper that I built a generalized platform for proteins synthesis that can revolutionize the productivity of the labs, I will certainly list at least 10 proteins there together with results, either bad or incredible. If I would have just two, I will certainly not advertise it as "generalized", but "promising". Yet another point regarding the experiments, I think they should have focused on some more impactful results (I find only the YmPhytase protein to be interesting) that can really have tremendous benefits on humans life.
+	
+	Now, there is no doubt this paper can set new standards in the field of protein synthesis improving their quality and performance. While the designed system here has many dependencies on the biofoundry, LLMs, budget, I think with a decent funding every lab that works around proteins synthesis can make use of it and increase their productivity.
+	
+\end{document}

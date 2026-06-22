@@ -7,6 +7,7 @@
     "editor.suggestSelection": "first",
     "editor.renderWhitespace": "none",
     "editor.minimap.enabled": true,
+    "window.zoomLevel": 1,
 
     "terminal.integrated.fontSize": 14,
     "terminal.integrated.fontFamily": "monospace",

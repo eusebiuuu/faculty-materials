@@ -365,7 +365,7 @@ GCM brilliantly encrypts the data using **CTR mode** (for blazing fast parallel 
 
 Composition Mode,How it Works,Security Status
 Encrypt-and-MAC (E&M),"Encrypt m to get c. Separately MAC m to get t. Send (c,t).","Dangerous. The tag t is a function of the plaintext, meaning it can leak information about the message content."
-MAC-then-Encrypt (MtE),Create a tag t of the message m. Encrypt the combined package (m∥t) to get c. Send c.,Fragile. The system must decrypt the data before it can check if it was tampered with. This leads to SSL/TLS flaws like the POODLE attack.
+MAC-then-Encrypt (MtE),Create a tag t of the message m. Encrypt the combined package (m||t) to get c. Send c.,Fragile. The system must decrypt the data before it can check if it was tampered with. This leads to SSL/TLS flaws like the POODLE attack.
 Encrypt-then-MAC (EtM),"Encrypt m first to get c. Then, MAC the ciphertext c to get t. Send (c,t).","Perfect (CCA Secure). The recipient checks the MAC tag first. If a single bit of the ciphertext was altered, the MAC fails, and the system discards it before wasting any math on decryption."
 
 ---

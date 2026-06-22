@@ -42,7 +42,9 @@
 - De asemenea, $f(n) = g(n) + h(n)$, unde $f(n)$ reprezinta costul minim al unui drum de la start la un nod scop, $g(n)$ este drumul de cost minim de la start la $n$, iar $h(n)$ este costul minim efectiv de la $n$ la un nod scop
 - Cum nu putem prezice viitorul, definim o functie $h'(n)$ ce are rolul de a oferi o **estimare** pentru $h$, $g'$ ca fiind $g$-ul gasit **pana la pasul curent** din parcurgere si $f'$ distanta minima **pana acum** de la start la un nod scop
 - Ca urmare, avem ca $f'(n) = g'(n) + h'(n)$
+
 ![](./images/A*algorithm.png)
+
 - A* este un algoritm complet, admisibil si optim.
 - Pentru ca A* sa fie admisibil, avem nevoie de 3 conditii:
   - $h'(n) \le h(n)$
@@ -99,14 +101,14 @@
 - **Suportul cauzal** al unei variabile aleatorii (nod în topologie) se referă la evidența sau informația care influențează probabilitatea unei variabile prin intermediul relațiilor cauzale directe sau indirecte reprezentate în rețea. Acesta implică un raționament de sus în jos (de la cauză la efect) sau în lanț prin legăturile cauzale.
 - **Suportul probatoriu** al unei variabile aleatorii (nod în topologie) se referă la raționamentul de jos în sus (de la variabilele observate mergând din părinte în părinte spre nodul curent)
 - Pe langa acestea, probabilitatile evenimentelor sunt calculate cu relatia lui Bayes, $P(A|B) = \frac{P(B|A) * P(A)}{P(B)}$, unde:
-  - P(A∣B) este probabilitatea evenimentului A dat fiind că evenimentul B a avut loc (**probabilitatea a posteriori**).
-  - P(B∣A) este probabilitatea evenimentului B dat fiind că evenimentul A a avut loc (**verosimilitatea**).
+  - P(A|B) este probabilitatea evenimentului A dat fiind că evenimentul B a avut loc (**probabilitatea a posteriori**).
+  - P(B|A) este probabilitatea evenimentului B dat fiind că evenimentul A a avut loc (**verosimilitatea**).
   - P(A) este probabilitatea a priori a evenimentului A.
   - P(B) este probabilitatea a priori a evenimentului B (probabilitatea totală).
 - Dorim sa construim aceste tipuri de retele cu evenimentele pe care le avem pentru a introduce dovezi (observații despre stările anumitor variabile) și apoi actualiza probabilitățile celorlalte variabile din rețea (fie cauze, fie efecte), calculând probabilitățile a posteriori. Acest proces se numește **inferență Bayesiană** (facem deductii despre alte evenimente).
 - Retelele Bayesiene sunt reprezentate ca **poliarbori**. Caracteristica definitorie a unui poliarbore este că între oricare două noduri din graf există cel mult o singură cale (neorientată). De exemplu, stiind ca a nins, dorim sa aflam probabilitatea ca este iarna, avand deja anumite probabilitati cunoscute (nodurile radacina si frunzele).
 - Aceste inferente sunt realizate de **algoritmii de inferenta** care se bazeaza pe principiul **independentei conditionate** pentru a optimiza calculele si a reteza subarbori.
-- **Independenta conditionata** are loc atunci cand toate drumurile care pleaca dintr-o multime de noduri $X$ sunt blocate **nedirectionat** (adica nu se ia in considerare directia) sa ajunga in $Y$ de o multime de noduri $E$. Altfel spus, două evenimente sau variabile aleatoare A și B sunt independente condiționat pe un al treilea eveniment sau variabilă aleatoare C dacă probabilitatea ca A să se întâmple (sau să ia o anumită valoare), dată fiind informația că B s-a întâmplat (sau a luat o anumită valoare), nu este influențată de faptul că C s-a întâmplat (sau a luat o anumită valoare). Formal, avem ca $P(A \cap B | C) = P(A,B∣C) = P(A∣C)\cdotP(B∣C)$
+- **Independenta conditionata** are loc atunci cand toate drumurile care pleaca dintr-o multime de noduri $X$ sunt blocate **nedirectionat** (adica nu se ia in considerare directia) sa ajunga in $Y$ de o multime de noduri $E$. Altfel spus, două evenimente sau variabile aleatoare A și B sunt independente condiționat pe un al treilea eveniment sau variabilă aleatoare C dacă probabilitatea ca A să se întâmple (sau să ia o anumită valoare), dată fiind informația că B s-a întâmplat (sau a luat o anumită valoare), nu este influențată de faptul că C s-a întâmplat (sau a luat o anumită valoare). Formal, avem ca $P(A \cap B|C) = P(A,B|C) = P(A|C)\cdot P(B|C)$
 - În cadrul unei rețele Bayesiene, un drum blocat condiționat (conditionally blocked path) reprezintă o secvență de noduri conectate prin arce (într-o anumită direcție), unde transmiterea influenței probabilistice (sau a dependenței) între două noduri de la capetele drumului este oprită sau blocată de starea cunoscută (condiționată) a unuia sau mai multor noduri intermediare de pe acel drum.
 - Fiind dată o mulţime de noduri E, spunem că un drum este blocat condiţionat de E dacă există un nod Z aparţinând drumului, pentru care una dintre următoarele trei condiţii se verifică:  
 ![](./images/conditional_block.png)
@@ -178,6 +180,27 @@
 - **Invatarea activa** presupune alegerea unui subset mic dintr-un set de date neetichetate pe care să îl etichetăm pentru a obține un clasificator cât mai bun.
 - **Transfer learning** presupune reutilizarea unui model antrenat pe un anumit domeniu / problema pe un alt domeniu / problema
 
+To understand machine learning, you need to be familiar with its foundational vocabulary:
+* **Dataset (Set de date):** The collection of data used to train and evaluate the model. It is typically divided into a **Training Set** (used to teach the model) and a **Testing Set** (used to evaluate its performance).
+* **Features / Attributes (Caracteristici):** The individual, measurable properties or variables of the phenomena being observed. (e.g., in a dataset about cars, features might be mileage, age, and brand).
+* **Target / Label (Etichetă):** The output variable you are trying to predict (e.g., the price of the car).
+* **Model (Model):** The mathematical representation or mathematical function learned by the algorithm that maps inputs (features) to outputs (predictions).
+* **Training / Learning (Antrenare):** The process where the algorithm analyzes the training data to find patterns and adjust its internal parameters to minimize errors.
+* **Inference / Prediction (Predicție):** Applying the trained model to new, unseen data to guess the output.
+
+### Canonical Forms of Learning Problems (Forme canonice ale problemelor de învățare)
+Depending on the type of data and the desired outcome, machine learning problems usually fall into one of these standard forms:
+
+#### Under Supervised Learning:
+* **Classification (Clasificare):** The task of predicting a **discrete class label** or category. 
+    * *Example:* Identifying if an email is "Spam" or "Not Spam"; diagnosing a tumor as "Malignant" or "Benign".
+* **Regression (Regresie):** The task of predicting a **continuous numerical value**.
+    * *Example:* Predicting the future price of a house based on its size and location; forecasting tomorrow's temperature.
+
+#### Under Unsupervised Learning:
+* **Clustering (Grupare):** The task of grouping a set of objects in such a way that objects in the same group (cluster) are more similar to each other than to those in other groups.
+    * *Example:* Customer segmentation based on purchasing behavior.
+
 ### Structura invatarii programelor
 - Procesul de invatare al programelor se realizeaza in 3 etape: antrenarea, validarea si testarea. Fiecare va avea un set specific alocat din dataset-ul furnizat
 - Validarea are rolul de a produce o estimare mai buna a hiperparametrilor programului. Daca am face testarea hiperparametrilor pe set-ul de test, atunci am putea ajunge la overfitting
@@ -194,9 +217,12 @@
 - **Jaccard Index**: Overlap between predicted and actual labels.
 - **ROC-AUC**: For binary classifiers — tradeoff between true and false positives.
 - **MSE / MAE**: For regression. Depends on how much we want to punish the mistakes.
-- **Kendall’s Tau (τ)**: Is a non-parametric measure of the strength and direction of association between two rankings.
+- **Kendall’s Tau**: Is a non-parametric measure of the strength and direction of association between two rankings.
 - **Model Parameters**: These are internal to the model and are learned from the training data. In SVMs, w and b define the decision boundary that separates different classes.
 - **Hyperparameters**: These are external configurations set before the training process begins. They control aspects of the training process and model complexity.
+- **Mean Absolute Error (MAE):** The average of the absolute differences between predictions and actual values.
+- **Mean Squared Error (MSE):** The average of the *squared* differences between predictions and actual values. It penalizes large errors more heavily than MAE.
+- **R-squared (R²):** Represents the proportion of variance in the dependent variable that is predictable from the independent variables. Closer to 1.0 is better.
 
 
 ### Clasificatorii
@@ -224,23 +250,61 @@
 ### SVM
 - **SVM** este un algoritm de **supervised learning**, specific pentru clasificare si regresie.
 - It finds the best hyperplane that separates data into classes. The “best” hyperplane is the one with the maximum margin — the greatest distance between the hyperplane and the nearest data points (called support vectors).
-- Concret, fiind dati o multime de vectori de antrenare $x_i \in \R^n$ si label-uri $y_i \in \set{-1, 1}$ pentru fiecare in parte, dorim sa gasim un hiperplan de forma $wx + b = 0$, unde $w$ este normala hiperplanului (adica perpendiculara pe hiperplan) si $b$ este bias-ul. Pentru ca datele sa fie corect clasificate mai avem nevoie si de conditia $y_i(wx_i + b) \ge 1 - \xi_i$. Daca $\xi_i = 0$ atunci avem **hard margin**, deoarece nu se permite nicio clasificare gresita, oricat de mica ar fi (de obicei duce la **overfitting**). In practica aceste erori de clasificare sunt controlate prin parametrul **C**.
+- Concret, fiind dati o multime de vectori de antrenare $x_i$ si label-uri $y_i$ pentru fiecare in parte, dorim sa gasim un hiperplan de forma $wx + b = 0$, unde $w$ este normala hiperplanului (adica perpendiculara pe hiperplan) si $b$ este bias-ul. Pentru ca datele sa fie corect clasificate mai avem nevoie si de conditia $y_i(wx_i + b) \ge 1 - \xi_i$. Daca $\xi_i = 0$ atunci avem **hard margin**, deoarece nu se permite nicio clasificare gresita, oricat de mica ar fi (de obicei duce la **overfitting**). In practica aceste erori de clasificare sunt controlate prin parametrul **C**.
 - De asemenea, cum dorim sa maximizam marginea, trebuie sa minimizam valoarea $\frac{1}{2} ||w||^2$.
 
-### Metoda Kernel
-- De multe ori insa, datele furnizate nu sunt **liniar separabile** (de ex. functia XOR). In acest caz suntem nevoiti sa folosim **metoda kernel**.
-- **Functia de kernel** are rolul de a calcula o valoare pe baza a 2 exemple date ca parametri, valoare ce reprezinta de fapt similaritate dintre feature-urile date ca parametri fara a se mai scufunda intr-un spatiu multidimensional. De aceea se mai numeste si **kernel trick**.
-- Strategia de determinare a etichetei unui test este urmatoarea: fiindu-ne dat un sir $\alpha$ de lungime $n$ si un $b$, se determina suma functiei kernel pentru fiecare pereche de input si testul curent, apoi se normalizeaza valorile, iar in final obtinem un o valoare ce ne da informatiile pentru algerea etichetei corespunzatoare. Aceasta este si functia de decizie si are urmatoarea formula: $f(x^{\text{test}}) = \sum_{i=1}^n \alpha_i \, K_{\text{norm}}(H_i, H_{\text{test}}) + b$
-- - Formal, o **functie kernel** reprezinta o functie $k : X^2 -> \R$ a.i. exista o functie $\theta : \R^m -> F$, $m$ fiind numarul de feature-uri, pentru care $k(x, y) = scalarProduct(\theta(x), \theta(y))$.
-- Cele mai comune functii kernel, impreuna cu scufundarile corespunzatoare, sunt urmatoarele:
-  - **Linear Kernel**: $K(x_i, x_j) = x_i^T\cdot x_j$ si $\phi(x) = x$
-  - **Polynomial Kernel**: $K(x_i, x_j) = (x_i^T \cdot x_j + c)^d$ si $\phi(x)$ depinde de parametri
-  - **RBF (Radial Basis Function)**: $K(x,x′)=e^{−\gamma∥x−x′∥^2}$, where $\gamma$ is a parameter that defines the influence of a single training example (the smaller the wider the similarity definition between 2 points is), and $x$ and $x'$ are the feature vectors.
+### The Kernel Method & The "Kernel Trick"
+Often, the data provided is **not linearly separable** in its original space (e.g., the XOR problem, or concentric circles). In standard linear models, this would cause the algorithm to fail. To solve this, we use the **Kernel Method**.
 
-### Primal and dual forms
-- In problemele de optimizare, exista 2 moduri in care se poate aborda: forma primala si forma duala
-- Primal Problem: Think of the primal problem as the "direct" way to solve your optimization goal. You want to achieve some objective (minimize cost, maximize profit, find the best separating hyperplane), and you have a set of constraints that must be satisfied. You are directly trying to find the values of your main decision variables (e.g., the weights and bias of a hyperplane) that achieve this objective.
-- Dual Problem: The dual problem offers an "indirect" or "alternative" perspective. Instead of directly optimizing your original variables, you introduce new variables (Lagrange multipliers) associated with each constraint. These multipliers can be thought of as "prices" or "penalties" for violating the constraints. The dual problem then tries to find the best possible lower bound (for a minimization problem) or upper bound (for a maximization problem) on the optimal value of the primal problem.
+* **The Core Idea (Scufundarea):** We map the original data from its input space ($x \in \mathbb{R}^m$) into a much higher-dimensional feature space ($F$) using a mapping function $\phi(x)$. In this new higher-dimensional space, the data becomes linearly separable by a hyperplane.
+* **The Computational Problem:** If the new space $F$ has millions of dimensions (or is infinite), calculating the dot product $\phi(x)^T \phi(y)$ becomes computationally impossible.
+* **The Kernel Trick (Trucul Kernel):** A **Kernel Function** $K(x, y)$ calculates the dot product (similarity) of two points in the high-dimensional space *without* ever explicitly computing the mapping $\phi$. 
+    * *Formal Definition:* A function $K: X \times X \rightarrow \mathbb{R}$ is a valid kernel if there exists a mapping $\phi: \mathbb{R}^m \rightarrow F$ such that:
+        $K(x, y) = \langle \phi(x), \phi(y) \rangle$
+* **Mercer's Theorem (Teorema lui Mercer):** Not every mathematical function can be a kernel. A function qualifies as a valid kernel only if it is symmetric $K(x,y) = K(y,x)$ and produces a positive semi-definite **Gram Matrix** (the matrix containing the kernel evaluations for all pairs of training examples).
+
+### The Decision Function & Support Vectors
+The decision function dictates how a new test point is classified. Your notes mentioned a sequence $\alpha$ of length $n$. These $\alpha_i$ values are the **Lagrange Multipliers** learned during training.
+
+The correct, standard formula for the decision boundary (often used in Support Vector Machines) incorporates the true labels ($y_i$) of the training data:
+$$f(x^{\text{test}}) = \text{sign} \left( \sum_{i=1}^n \alpha_i y_i K(x_i, x^{\text{test}}) + b \right)$$
+
+* **Support Vectors:** In practice, most $\alpha_i$ values become $0$. The training examples $x_i$ where $\alpha_i > 0$ are called **Support Vectors**. These are the *only* data points that matter for defining the decision boundary. If you delete all other data points, the model remains exactly the same.
+
+### Common Kernel Functions
+Different kernels map data into different types of feature spaces.
+
+* **Linear Kernel:** $K(x, x') = x^T \cdot x'$
+    * *Explanation:* Does not map to a higher dimension ($\phi(x) = x$). Used when data is already linearly separable or when there are a massive number of features (e.g., text classification).
+* **Polynomial Kernel:** $K(x, x') = (\gamma x^T \cdot x' + c)^d$
+    * *Parameters:* $d$ is the degree of the polynomial, $c$ is a constant trading off the influence of higher-order versus lower-order terms.
+    * *Usage:* Commonly used in image processing.
+* **RBF (Radial Basis Function) / Gaussian Kernel:** $K(x,x') = \exp(-\gamma \|x - x'\|^2)$
+    * *Explanation:* This maps the data into an **infinite-dimensional space**. It measures the Euclidean distance between points.
+    * *The $\gamma$ (gamma) parameter:* Defines the "spread" of the kernel. 
+        * **High $\gamma$:** The similarity radius is narrow. Only points very close to each other are considered similar. Leads to highly irregular, complex decision boundaries (**Risk of Overfitting**).
+        * **Low $\gamma$:** The similarity radius is wide. Many points influence the decision. Leads to a smoother, more linear decision boundary (**Risk of Underfitting**).
+
+### Primal vs. Dual Forms in Optimization
+In machine learning (especially Support Vector Machines), the math used to find the best model can be formulated in two equivalent ways.
+
+#### The Primal Problem (Forma Primală)
+* **Perspective:** The "direct" approach. You are trying to find the physical attributes of the decision boundary itself.
+* **Goal:** Optimize the main variables. For an SVM, this means finding the optimal weight vector $w$ and bias $b$ that define the hyperplane, while minimizing classification errors.
+* **Formula (Soft-Margin SVM):** $$\min_{w, b, \xi} \frac{1}{2} \|w\|^2 + C \sum_{i=1}^n \xi_i$$
+    *(Subject to the constraint that data points are classified correctly, where $\xi_i$ are slack variables for errors).*
+* **Complexity:** The computational cost depends on $m$, the **number of features (dimensions)**.
+
+#### The Dual Problem (Forma Duală)
+* **Perspective:** The "indirect" approach. Instead of finding the hyperplane's weights directly, we look at the interactions (similarities) between the data points themselves.
+* **How it works:** We introduce **Lagrange Multipliers ($\alpha_i$)** for every constraint in the primal problem. These act as penalties. The goal switches to maximizing a function based entirely on these multipliers.
+* **Formula:** $$\max_{\alpha} \sum_{i=1}^n \alpha_i - \frac{1}{2} \sum_{i=1}^n \sum_{j=1}^n \alpha_i \alpha_j y_i y_j K(x_i, x_j)$$
+    *(Subject to $0 \le \alpha_i \le C$ and $\sum \alpha_i y_i = 0$)*
+* **Complexity:** The computational cost depends on $n$, the **number of data points (examples)**, NOT the number of features.
+
+#### Why do we care about the Dual Form? (Crucial for Exams)
+1.  **It enables the Kernel Trick:** Look at the dual formula. The data points $x_i$ and $x_j$ *only* appear as a dot product inside the kernel function $K(x_i, x_j)$. The Primal form requires $w$, which would be infinite-dimensional if we used an RBF kernel. The Dual form bypasses this entirely!
+2.  **Dimensionality Advantage:** If you have data with millions of features but only 1,000 samples (like in genetics), the Primal form is mathematically brutal. The Dual form is much faster because it only scales with the 1,000 samples.
 
 ### Classification types
 - Algoritmii prezentati pana acum merg pe abordarea **One vs One**. Aceasta presupune realizarea separarii dintre toate perechile de 2 clase stabilite.
@@ -251,37 +315,91 @@
 - Concret, dorim sa determinam o functie $y = w^Tx + b$ unde $w$ este vectorul coeficient (panta) format din $(w_1, w_2 ...)$ pe care modelul doreste sa-l calculeze, $x = (x_1, x_2, ...)$ este vectorul dat, iar $b$ este bias-ul / intercept-ul. De asemenea, vrem sa o facem in asa fel incat sa minimizam **MAE** si **MSE**
 - Totusi, in regresia liniara, adica cea prezentata mai sus, in cazul in care avem zgomot sau feature-urile au valori mari, modelul nostru poate face overfitting. Pentru aceasta, au fost create regresiile **Ridge** si **Lasso**, care presupun o regularizare a datelor prin introducerea unor penalizari pentru valorile $w_i$ prea mari calculate. In regresia Ridge, the larger the $\alpha$, the more we shrink the coefficients toward 0 (but not exactly 0). Regresia Ridge presupune o penalizare bazata pe `L2`, in timp ce regresia Lasso se bazeaza pe `L1`.
 
+### Rețele Neuronale Feedforward (FNNs)
 
-### Retele neuronale. FNNs
-- Retelele neuronale se bazeaza pe **perceptron**. Acesta reprezinta un clasificator liniar foarte similar cu cel de la regresii ce consta in formula $\hat{y} = w^Tx + b$, unde $w$ reprezinta vectorul de ponderi corespunzator muchiilor care intra in perceptron, iar $b$ este bias-ul, adica de la ce valori dorim ca functia sa fie interpretata intr-un anumit fel
-- Obtinand input-ul din formula de mai sus, in care modelul va avea ca scop determinarea weight-urilor si bias-urilor, dorim sa-l interpretam intr-un anumit fel, iar variatiile din perceptroni sa se reflecte proportional in rezultatul final. Pentru aceasta folosim o **functie de activare**. Cele mai comune functii de activare, determinate si de ce obiectiv avem, sunt urmatoarele:
-  - **Identity** (nu face nimic)
-  - **Sign**: buna pentru clasificarea binara
-  - **ReLU** / **Leaky ReLU**: for classification and images
-  - **Tanh**: ??
-  - **Sigmoid**: for probabilities
-  - **Softmax**: multiple probabilities
-- Avand aceste notiuni in minte, o retea neuronala este formata din mai multe straturi de perceptroni, fiecare strat avand o matrice de ponderi si bias-uri, reprezentand sursa de influenta pentru urmatorul strat.
-- In retelele de tip **feedforward (FNNs)**, primul strat va reprezenta setul de feature-uri ale input-ului, straturile intermediare se mai numesc si **hidden layers**, iar stratul final, alcatuit dintr-un singur neuron reprezinta output layer-ul.
+#### Perceptronul și Baza Matematică
+Rețelele neuronale moderne se bazează pe conceptul de **perceptron** (mai exact, perceptronul multistrat). La nivelul unui singur neuron artificial, operația este similară cu un clasificator liniar sau o regresie liniară. 
+Calculul de bază al unui neuron (înainte de activare) se notează adesea cu $z$:
+$$z = w^T x + b = \sum_{i=1}^{n} w_i x_i + b$$
+* $x$ = vectorul de input (sau output-ul stratului anterior).
+* $w$ = vectorul de ponderi (weights) corespunzător conexiunilor.
+* $b$ = bias-ul (termenul liber). Acesta translatează funcția de activare spre stânga sau dreapta, ajutând modelul să se potrivească mai bine pe date (acționează ca un prag de declanșare).
 
-- Procesul de invatare al retelei se realizeaza pe baza unei functii de cost. Concret, avand rezultatul din output layer pentru fiecare training data, il comparam cu rezultatul din label printr-o **functie de pierdere**, iar in functie de media acestor erori aflam performanta retelei.
-- Exista mai multe tipuri de **loss functions**:
-  - Regression Tasks: MSE, MAE, Huber, or Log-Cosh, depending on sensitivity to outliers.
-  - Binary Classification: **Binary Cross-Entropy** or Hinge Loss.
-  - Multi-Class Classification: Categorical Cross-Entropy or Sparse Categorical Cross-Entropy.
-  - Imbalanced Datasets: Focal Loss.
-  - Metric Learning (e.g., Face Recognition): Contrastive or Triplet Loss.
-  - Image Segmentation: Dice Loss or IoU Loss.
-  - Classifications with probabilities distributions: **Kullback–Leibler (KL) Divergence** measures how one probability distribution diverges from a second, expected probability distribution
+#### Funcții de Transfer (Activare) și Derivatele lor
+Dacă am folosi doar operația de mai sus, indiferent de câte straturi am adăuga, rețeaua ar fi doar o mare funcție liniară. Pentru a modela relații complexe (neliniare), aplicăm o **funcție de activare (sau de transfer)** peste rezultatul $z$: $a = f(z)$.
+Derivata funcției de activare, $f'(z)$, este crucială în procesul de învățare (Backpropagation) pentru calcularea gradientului.
 
-- Pentru a mari acuratetea retelei, dupa ce am obtinut valoarea **functiei de pierdere**, dorim sa ne apropiem cu toate componentele retelei (weight-urile si bias-urile) de valori cat mai mici. Acest lucru se realizeaza cu metoda de **gradient decent** care presupune derivarea partiala a functiei retelei neuronale in fiecare componenta a sa si folosirea lor pentru a prezice modificarea unei componente pentru a se apropia de un minim local.
-- Totusi, rularea acestui algoritm pe toate input-urile este destul de costisitoare. Pentru asta vom folosi **stochastic gradient descent** care presupune alegerea la intamplare a catorva feature-uri pe care sa aflam valorile gradient-ului si apoi sa actualizam parametrii
-- Aceste operatii se realizeaza in practica prin diferiti algoritmi, insa toti sunt bazati pe **gradient decent**:
-  - **Backpropagation** presupune actualizarea valorilor pornind de la output layer la primul layer
-  - **Algoritmul Widrow-Hoff**: presupune actualizarea valorilor (weights si bias) pe loc, in momentul determinarii unui nou rezultat pentru un perceptron la o anumita epoca. Se bazeaza pe valorile obtinute din stratul anterior si presupune ca functia de activare a perceptronului este functia identitate
+* **Identity (Liniară):** $f(z) = z$
+    * *Derivata:* $f'(z) = 1$
+    * *Utilizare:* În stratul de output pentru probleme de regresie continuă. Nu se folosește în hidden layers.
+* **Sign (Treaptă / Heaviside):** $f(z) = 1$ dacă $z \ge 0$, altfel $-1$ (sau $0$)
+    * *Derivata:* $f'(z) = 0$ aproape peste tot.
+    * *Utilizare:* Istorică, pentru perceptronul simplu binar. Ineficientă azi deoarece derivata 0 oprește învățarea (gradientul dispare).
+* **Sigmoid (Logistică):** $f(z) = \sigma(z) = \frac{1}{1 + e^{-z}}$
+    * *Derivata:* $f'(z) = f(z) \cdot (1 - f(z))$
+    * *Utilizare:* Clasificare binară (în output layer), transformă output-ul în probabilități $(0, 1)$. 
+    * *Dezavantaj:* Suferă de problema "vanishing gradient" (gradientul devine foarte mic pentru valori extreme ale lui $z$).
+* **Tanh (Tangenta Hiperbolică):** $f(z) = \tanh(z) = \frac{e^z - e^{-z}}{e^z + e^{-z}}$
+    * *Derivata:* $f'(z) = 1 - \tanh^2(z)$
+    * *Utilizare:* Bună pentru hidden layers. Este preferată funcției Sigmoid deoarece este centrată în 0 (rezultate între $-1$ și $1$), ajutând la o convergență mai rapidă.
+* **ReLU (Rectified Linear Unit):** $f(z) = \max(0, z)$
+    * *Derivata:* $f'(z) = 1$ pentru $z > 0$; $f'(z) = 0$ pentru $z \le 0$
+    * *Utilizare:* Standardul de facto pentru **hidden layers**. Este rapidă computațional și rezolvă în mare parte problema vanishing gradient.
+    * *Dezavantaj:* "Dying ReLU" - neuronii pot deveni inactivi permanent dacă primesc doar valori negative.
+* **Leaky ReLU:** $f(z) = z$ (pt $z > 0$), $\alpha z$ (pt $z \le 0$), unde $\alpha$ e o constantă mică (ex. 0.01).
+    * *Derivata:* $1$ (pt $z > 0$) și $\alpha$ (pt $z \le 0$). Rezolvă problema "Dying ReLU".
+* **Softmax:** $f(z_i) = \frac{e^{z_i}}{\sum_{j} e^{z_j}}$
+    * *Utilizare:* Stratul de output pentru **clasificare multi-clasă**. Transformă un vector de numere într-o distribuție de probabilități a căror sumă este 1.
+
+#### Arhitecturi: Rețele Feedforward (FNNs)
+O rețea Feedforward (sau Multi-Layer Perceptron - MLP) direcționează informația într-un singur sens (de la input la output), fără bucle.
+* **Input Layer:** Nu face procesare, doar preia setul de feature-uri ($x_1, x_2, ...$). Numărul de neuroni = numărul de feature-uri.
+* **Hidden Layers (Straturi ascunse):** Straturile intermediare. O rețea "Deep" are 2 sau mai multe astfel de straturi. Acestea extrag trăsături și modele complexe din date. Matematic, reprezintă o matrice de ponderi $W^{(l)}$ și un vector de bias-uri $b^{(l)}$ pentru fiecare strat $l$.
+* **Output Layer:** Formulat în funcție de problemă (1 neuron liniar pt regresie, 1 neuron Sigmoid pt clasificare binară, $N$ neuroni Softmax pt $N$ clase).
+
+#### Inițializarea Datelor (Ponderilor)
+Cum alegem valorile inițiale pentru $W$ și $b$ înainte de a începe antrenarea?
+* **NICIODATĂ TOATE ZERO:** Dacă inițializăm toate ponderile cu 0 (sau cu aceeași valoare), toți neuronii din stratul ascuns vor învăța aceleași trăsături și vor avea aceiași gradienți (Problema Simetriei).
+* **Random Initialization:** Ponderile primesc valori aleatoare mici. Bias-urile pot fi inițializate cu 0.
+* **Xavier / Glorot Initialization:** Folosită optim alături de activări **Tanh sau Sigmoid**. Extrage valori dintr-o distribuție calculată pe baza numărului de neuroni de intrare și ieșire.
+* **He Initialization:** Folosită optim alături de activări **ReLU / Leaky ReLU**. Previne dispariția semnalului în rețele adânci.
+
+#### Funcții de Cost și Pierdere (Loss Functions)
+Procesul de învățare necesită măsurarea erorii rețelei. **Loss** reprezintă eroarea pe un singur exemplu, în timp ce **Cost** este media erorilor pe întregul dataset de training.
+* **Regresie:** MSE (Mean Squared Error), MAE (Mean Absolute Error), Huber Loss.
+* **Clasificare Binară:** Binary Cross-Entropy (BCE).
+* **Clasificare Multi-Clasă:** Categorical Cross-Entropy (CCE).
+* **Altele:** Focal Loss (pt date dezechilibrate), Contrastive Loss (Metric learning), KL Divergence (pentru compararea distribuțiilor de probabilitate).
+
+#### Optimizarea: Gradient Descent și Variante
+Pentru a minimiza funcția de Cost ($J(W, b)$), trebuie să actualizăm ponderile în direcția inversă a gradientului. 
+* Formula de actualizare a unei ponderi: $w_{nou} = w_{vechi} - \eta \cdot \frac{\partial J}{\partial w}$, unde $\eta$ este rata de învățare (Learning Rate).
+* **Batch Gradient Descent:** Calculează gradientul pe TOATE datele înainte de un update. Foarte lent și costisitor.
+* **Stochastic Gradient Descent (SGD):** Actualizează ponderile după calcularea gradientului pentru **un singur exemplu** (ales aleator). Foarte rapid, dar zgomotos.
+* **Mini-Batch SGD:** Compromisul perfect. Calculează gradientul pe un grup mic de exemple (ex. 32, 64, 128). Este standardul modern.
+
+#### Backpropagation și Regula de Înlănțuire (Chain Rule)
+**Backpropagation (Propagarea înapoi a erorii)** este algoritmul care calculează eficient gradienții (derivata parțială a funcției de cost în raport cu fiecare pondere și bias din rețea).
+El se bazează fundamental pe **Regula de Înlănțuire (Chain Rule)** din analiza matematică.
+
+Dacă avem un neuron de output unde input-ul a fost $z = wx+b$, activarea $a = f(z)$, iar pierderea calculată e $L(a, y)$, vrem să aflăm cât de mult influențează ponderea $w$ pierderea $L$, adică $\frac{\partial L}{\partial w}$.
+Aplicând Chain Rule:
+$$\frac{\partial L}{\partial w} = \frac{\partial L}{\partial a} \cdot \frac{\partial a}{\partial z} \cdot \frac{\partial z}{\partial w}$$
+Unde:
+1.  $\frac{\partial L}{\partial a}$: Derivata funcției de loss (cât de greșit e rezultatul final).
+2.  $\frac{\partial a}{\partial z} = f'(z)$: Derivata funcției de activare (de aici importanța ecuațiilor de la punctul 2).
+3.  $\frac{\partial z}{\partial w} = x$: Input-ul primit de neuron.
+
+Această eroare ("delta") se calculează mai întâi la Output Layer și se **propagă înapoi**, strat cu strat, spre Input Layer, reutilizând calculele deja făcute pentru a eficientiza algoritmul.
+
+#### Algoritmul Widrow-Hoff (Delta Rule)
+Este predecesorul istoric al Backpropagation. Se aplica rețelelor cu un singur strat (Adaline) și cu funcție de activare identitate (liniară). 
+Algoritmul presupune actualizarea pe loc a ponderilor proporțional cu eroarea reziduală:
+$$\Delta w_i = \eta (y_{target} - y_{predict}) x_i$$
+Astăzi este considerat un caz particular, simplificat, al algoritmului general de gradient descent.
 
 
-### **Convolutional neural networks (CNNs)**
+### **Convolutional neural networks (CNNs) (OPTIONAL)**
 - Retelele convolutionale se bazeaza pe operatia de **convolutie** dintre o submatrice a input-ului (**care va fi mereu o matrice**) si o matrice numita **kernel**, ce reprezinta de fapt inmultirea element cu element a celor 2. Output-ul acestei operatii va fi o matrice de dimensiunea kernel-ului si va reprezenta un **feature map**.
 - Un input poate fi format din mai multe dimensiuni, adica mai multe astfel de matrici, in care fiecare dimensiune este responsabila cu un tip de feature (de ex. imaginile RGB), caz in care se vor defini mai multe **canale**, unul pentru fiecare matrice, fiecare cu propriul kernel (sau nu), ce la final se vor uni si vor forma **output-ul layer-ului**.
 - Inmultirea din operatia de convolutie se realizeaza prin sliding-ul matricii kernel de-a lungul input-ului. Pasul cu care se realizeaza acest sliding se numeste **stride**.
